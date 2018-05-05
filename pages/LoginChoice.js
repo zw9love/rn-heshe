@@ -9,51 +9,51 @@ import {
     ScrollView,
     TouchableOpacity,
     Image,
-    Dimensions,
+    Dimensions, Platform,
 } from 'react-native';
 
 let {width, height, scale} = Dimensions.get('window');
-let marginLeft = ( width - 200 )/5
+let marginLeft = (width - 200) / 5
 
 import Title from '../components/Title'
 import PhoneLogin from './PhoneLogin'
 
-export default class LoginChoice extends Component{
-    constructor(props){
+export default class LoginChoice extends Component {
+    constructor(props) {
         super(props)
-        this.state={
-            titleData:{
-                title:''
+        this.state = {
+            titleData: {
+                title: ''
             },
-            mainData:[
-                {name:'新浪微博',url:require('../assets/images/share_weibo.png')},
-                {name:'微信好友',url:require('../assets/images/share_wechat.png')},
-                {name:'QQ',url:require('../assets/images/share_qq.png')},
-                {name:'手机号',url:require('../assets/images/share_phone.png')},
+            mainData: [
+                {name: '新浪微博', url: require('../assets/images/share_weibo.png')},
+                {name: '微信好友', url: require('../assets/images/share_wechat.png')},
+                {name: 'QQ', url: require('../assets/images/share_qq.png')},
+                {name: '手机号', url: require('../assets/images/share_phone.png')},
             ]
         }
 
         this.jump = this.jump.bind(this)
     }
 
-    jump(){
+    jump() {
         this.props.navigator.push({
-            component:PhoneLogin
+            component: PhoneLogin
         })
     }
 
-    renderChoiceCell(){
+    renderChoiceCell() {
         let data = this.state.mainData
         let arr = []
-        data.map((msg,i)=>{
-            if(i == data.length - 1){
+        data.map((msg, i) => {
+            if (i === data.length - 1) {
                 arr.push(
                     <TouchableOpacity key={i} style={styles.choiceCell} onPress={this.jump}>
                         <Image source={msg.url} style={styles.choiceImage}/>
                         <Text style={styles.choiceTxt}>{msg.name}</Text>
                     </TouchableOpacity>
                 )
-            }else{
+            } else {
                 arr.push(
                     <TouchableOpacity key={i} style={styles.choiceCell}>
                         <Image source={msg.url} style={styles.choiceImage}/>
@@ -66,8 +66,8 @@ export default class LoginChoice extends Component{
         return arr
     }
 
-    render(){
-        return(
+    render() {
+        return (
             <View style={styles.container}>
                 <Title navigator={this.props.navigator} data={this.state.titleData}/>
                 <View style={styles.mainWrap}>
@@ -82,40 +82,41 @@ export default class LoginChoice extends Component{
 }
 
 const styles = StyleSheet.create({
-    container:{
-        flex:1,
-        backgroundColor:'#fff'
+    container: {
+        flex: 1,
+        backgroundColor: '#fff',
+        marginTop: Platform.OS === 'android' ? 0 : 10
     },
-    mainWrap:{
-        height:height - 50,
+    mainWrap: {
+        height: height - 50,
         // backgroundColor:'yellow',
         justifyContent: 'center',
         // alignItems: 'center',
     },
-    choiceWrap:{
-        flexDirection:'row',
-        paddingTop:20,
-        paddingBottom:20,
-        borderColor:'#e8e8e8',
-        borderWidth:1,
+    choiceWrap: {
+        flexDirection: 'row',
+        paddingTop: 20,
+        paddingBottom: 20,
+        borderColor: '#e8e8e8',
+        borderWidth: 1,
         // backgroundColor:'skyblue'
     },
-    choiceCell:{
+    choiceCell: {
         alignItems: 'center',
-        marginLeft:marginLeft
+        marginLeft: marginLeft
     },
-    choiceImage:{
-        width:50,
-        height:50
+    choiceImage: {
+        width: 50,
+        height: 50
     },
-    choiceTxt:{
-        fontSize:12
+    choiceTxt: {
+        fontSize: 12
     },
-    methodTxt:{
-        textAlign:'center',
-        marginBottom:10,
-        color:'#333',
-        fontSize:14,
+    methodTxt: {
+        textAlign: 'center',
+        marginBottom: 10,
+        color: '#333',
+        fontSize: 14,
         // backgroundColor:'yellow'
     }
 })

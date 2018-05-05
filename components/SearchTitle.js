@@ -32,7 +32,7 @@ export default class MyOrder extends Component {
                     //barStyle='light-content'
                     showHideTransition={'fade'}
                 />
-                <View style={styles.hideStyle} />
+                <View style={styles.hideStyle}/>
                 <View style={styles.container}>
                     <TouchableOpacity style={styles.backWrap} onPress={this.back}>
                         <Image source={require('../assets/images/back.png')} style={styles.backImage}/>
@@ -62,10 +62,10 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         flexDirection: 'row',
         alignItems: 'center',
-        borderBottomWidth:1,
-        borderColor:'#e8e8e8',
-        paddingLeft:10,
-        paddingRight:10,
+        borderBottomWidth: 1,
+        borderColor: '#e8e8e8',
+        paddingLeft: 10,
+        paddingRight: 10,
     },
     backImage: {
         height: 18,
@@ -79,26 +79,26 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 14
     },
-    searchWrap:{
-        width:width - 43,
-        height:34,
+    searchWrap: {
+        width: width - 43,
+        height: 34,
         // backgroundColor:'red',
-        borderRadius:17,
-        borderWidth:1,
-        borderColor:'#ccc',
+        borderRadius: 17,
+        borderWidth: 1,
+        borderColor: '#ccc',
         flexDirection: 'row',
         alignItems: 'center',
     },
-    searchTxt:{
-        height:40,
-        width:width - 75
+    searchTxt: {
+        height: 40,
+        width: width - 75
     },
-    searchImage:{
-        width:15,
-        height:16,
-        marginLeft:17
+    searchImage: {
+        width: 15,
+        height: 16,
+        marginLeft: 17
     },
-    hideStyle:{
-        height:StatusBar.currentHeight
+    hideStyle: {
+        height: StatusBar.currentHeight
     }
 })

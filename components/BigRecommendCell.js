@@ -15,18 +15,18 @@ let {width, height, scale} = Dimensions.get('window');
 
 import Show from '../pages/Show'
 
-export default class BigRecommendCell extends Component{
-    constructor(props){
+export default class BigRecommendCell extends Component {
+    constructor(props) {
         super(props)
         this.jumpShow = this.jumpShow.bind(this)
     }
 
     //跳转show页面
-    jumpShow(){
+    jumpShow() {
         let nav = this.context.store.getState().myNavigator;
         nav.push({
-            component:Show,
-            passProps:this.props.data
+            component: Show,
+            passProps: this.props.data
         })
     }
 
@@ -36,8 +36,8 @@ export default class BigRecommendCell extends Component{
     }
 
 
-    render(){
-        return(
+    render() {
+        return (
             <View style={styles.container}>
                 <TouchableOpacity style={styles.titleWrap} onPress={this.jumpShow}>
                     <Text style={styles.titleTxt}>{this.props.data.title}</Text>
@@ -70,59 +70,57 @@ export default class BigRecommendCell extends Component{
 }
 
 const styles = StyleSheet.create({
-    container:{
-        borderBottomWidth:1,
-        borderColor:'#e8e8e8'
+    container: {
+        borderBottomWidth: 1,
+        borderColor: '#e8e8e8'
     },
-    titleWrap:{
-        marginTop:10,
-        marginBottom:10
+    titleWrap: {
+        marginTop: 10,
+        marginBottom: 10
     },
-    titleTxt:{
-        color:'#333',
-        fontSize:14
+    titleTxt: {
+        color: '#333',
+        fontSize: 14
     },
-    bigImage:{
-        width:width - 20,
-        height:( width - 20 ) * 0.68
+    bigImage: {
+        width: width - 20,
+        height: (width - 20) * 0.68
     },
-    bottomWrap:{
-        flexDirection:'row',
+    bottomWrap: {
+        flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        marginTop:10,
-        marginBottom:10
+        marginTop: 10,
+        marginBottom: 10
     },
-    iconWrap:{
-        flexDirection:'row',
+    iconWrap: {
+        flexDirection: 'row',
     },
-    leftIconWrap:{
-        flexDirection:'row',
+    leftIconWrap: {
+        flexDirection: 'row',
         alignItems: 'center',
     },
-    rightIconWrap:{
-        flexDirection:'row',
+    rightIconWrap: {
+        flexDirection: 'row',
         alignItems: 'center',
-        marginLeft:10
+        marginLeft: 10
     },
-    eyesIcon:{
-        width:14,
-        height:8
+    eyesIcon: {
+        width: 14,
+        height: 8
     },
-    msgIcon:{
-        width:12,
-        height:10
+    msgIcon: {
+        width: 12,
+        height: 10
     },
-    number:{
-        color:'#666',
-        fontSize:10,
-        marginLeft:5
+    number: {
+        color: '#666',
+        fontSize: 10,
+        marginLeft: 5
     },
-    orderNameWrap:{
-
-    },
-    orderName:{
-        fontSize:12,
-        color:'#999'
+    orderNameWrap: {},
+    orderName: {
+        fontSize: 12,
+        color: '#999'
     }
 })

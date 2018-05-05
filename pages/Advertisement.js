@@ -22,17 +22,17 @@ import Home from './Home'
 
 export default React.createClass({
     mixins: [TimerMixin],
-    componentWillMount(){
+    componentWillMount() {
         //这里判不判断都行,IOS的BackAndroid为空
         if (Platform.OS === 'android') {
             BackAndroid.addEventListener('hardwareBackPress', this.onBackAndroid);
         }
         //alert(888);
     },
-    componentWillUnmount(){
+    componentWillUnmount() {
         BackAndroid.removeEventListener('hardwareBackPress', this.onBackAndroid);
     },
-    onBackAndroid(){
+    onBackAndroid() {
         //alert(666);
         // if (this.lastBackPressed && this.lastBackPressed + 2000 >= Date.now()) {
         //     //最近2秒内按过back键，可以退出应用。
@@ -43,12 +43,12 @@ export default React.createClass({
         ToastAndroid.show('就不给你退出，必须给我看广告', ToastAndroid.SHORT);
         return true;
     },
-    getInitialState(){
+    getInitialState() {
         return {
             time: 5
         }
     },
-    render(){
+    render() {
         return (
             <View style={styles.container}>
                 {/*StatusBar组件*/}
@@ -71,7 +71,7 @@ export default React.createClass({
             </View>
         )
     },
-    componentDidMount(){
+    componentDidMount() {
         this.num = this.state.time;
         this.timer = this.setInterval(() => {
             this.num--;
@@ -87,7 +87,7 @@ export default React.createClass({
             }
         }, 1000)
     },
-    jump(){
+    jump() {
         this.clearInterval(this.timer);
         this.props.navigator.replace({
             component: Home

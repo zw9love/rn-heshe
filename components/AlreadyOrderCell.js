@@ -17,17 +17,17 @@ let {width, height, scale} = Dimensions.get('window');
 import OrderShow from '../pages/OrderShow'
 
 export default class MyOrder extends Component {
-    constructor(props){
+    constructor(props) {
         super(props)
         this.jump = this.jump.bind(this)
     }
 
     // 跳转
-    jump(){
+    jump() {
         let nav = this.context.store.getState().myNavigator;
         nav.push({
-            component:OrderShow,
-            passProps:this.props.data
+            component: OrderShow,
+            passProps: this.props.data
         })
     }
 
@@ -36,8 +36,8 @@ export default class MyOrder extends Component {
         store: React.PropTypes.object.isRequired    // 子组件的  contextTypes 必须声明 这句很重要
     }
 
-    render(){
-        return(
+    render() {
+        return (
             <View style={styles.container}>
                 <TouchableOpacity onPress={this.jump}>
                     <Image source={this.props.data.url} style={styles.orderImage}/>
@@ -51,7 +51,7 @@ export default class MyOrder extends Component {
                     </TouchableOpacity>
                 </View>
                 <View style={styles.timeWrap}>
-                    <Text style={{fontSize:12}}>{this.props.data.time}</Text>
+                    <Text style={{fontSize: 12}}>{this.props.data.time}</Text>
                 </View>
             </View>
         )
@@ -59,40 +59,40 @@ export default class MyOrder extends Component {
 }
 
 const styles = StyleSheet.create({
-    container:{
+    container: {
         // height:70,
-        flexDirection:'row',
+        flexDirection: 'row',
         alignItems: 'center',
-        borderBottomWidth:1,
-        borderColor:'#e8e8e8',
+        borderBottomWidth: 1,
+        borderColor: '#e8e8e8',
         // backgroundColor:'yellow',
-        paddingTop:10,
-        paddingBottom:10
+        paddingTop: 10,
+        paddingBottom: 10
     },
-    orderImage:{
-        width:44,
-        height:44,
-        borderRadius:22,
-        marginRight:10
+    orderImage: {
+        width: 44,
+        height: 44,
+        borderRadius: 22,
+        marginRight: 10
     },
-    txtWrap:{
-        width:width - 20 - 54 - 40,
-        marginRight:10
+    txtWrap: {
+        width: width - 20 - 54 - 40,
+        marginRight: 10
     },
-    nameTxt:{
-        color:'#2e99e9',
-        fontSize:13
+    nameTxt: {
+        color: '#2e99e9',
+        fontSize: 13
     },
-    infoTxt:{
-        color:'#ccc',
-        marginTop:5,
-        fontSize:12
+    infoTxt: {
+        color: '#ccc',
+        marginTop: 5,
+        fontSize: 12
     },
-    timeWrap:{
-        position:'absolute',
-        right:0,
-        top:10,
-        width:40
+    timeWrap: {
+        position: 'absolute',
+        right: 0,
+        top: 10,
+        width: 40
     }
 })
 

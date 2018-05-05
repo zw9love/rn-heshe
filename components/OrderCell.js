@@ -17,10 +17,10 @@ let {width, height, scale} = Dimensions.get('window');
 import OrderShow from '../pages/OrderShow'
 
 export default class MyOrder extends Component {
-    constructor(props){
+    constructor(props) {
         super(props)
-        this.state={
-            orderActive:false
+        this.state = {
+            orderActive: false
         }
         this.beOrder = this.beOrder.bind(this)
         this.jump = this.jump.bind(this)
@@ -28,17 +28,17 @@ export default class MyOrder extends Component {
     }
 
     // 挂载完成
-    componentDidMount(){
+    componentDidMount() {
         this.count = 1
-        this.lock= false
+        this.lock = false
     }
 
     // 跳转
-    jump(){
+    jump() {
         let nav = this.context.store.getState().myNavigator;
         nav.push({
-            component:OrderShow,
-            passProps:this.props.data
+            component: OrderShow,
+            passProps: this.props.data
         })
     }
 
@@ -48,36 +48,36 @@ export default class MyOrder extends Component {
     }
 
     // 点击订阅
-    beOrder(){
+    beOrder() {
         let obj = this.props.parent
-        if(obj.lock) return
+        if (obj.lock) return
         obj.lock = true
-        if(this.count % 2){
-            obj.setState({orderActive:true,modalTxt:'已订阅'})
-            obj.timer = setTimeout(()=>{
-                obj.setState({orderActive:false})
+        if (this.count % 2) {
+            obj.setState({orderActive: true, modalTxt: '已订阅'})
+            obj.timer = setTimeout(() => {
+                obj.setState({orderActive: false})
                 obj.lock = false
-            },2500)
-        }else{
-            obj.setState({orderActive:true,modalTxt:'已取消订阅'})
-            obj.timer = setTimeout(()=>{
-                obj.setState({orderActive:false})
+            }, 2500)
+        } else {
+            obj.setState({orderActive: true, modalTxt: '已取消订阅'})
+            obj.timer = setTimeout(() => {
+                obj.setState({orderActive: false})
                 obj.lock = false
-            },2500)
+            }, 2500)
         }
         this.count++
-        this.setState({orderActive:!this.state.orderActive})
+        this.setState({orderActive: !this.state.orderActive})
     }
 
-    renderOrder(){
-        if(this.state.orderActive){
-            return(
+    renderOrder() {
+        if (this.state.orderActive) {
+            return (
                 <View style={styles.alreadyWrap}>
                     <Text style={styles.alreadyTxt}>已订阅</Text>
                 </View>
             )
-        }else{
-            return(
+        } else {
+            return (
                 <View style={styles.unAlreadyWrap}>
                     <View style={styles.lineHor}></View>
                     <View style={styles.lineVer}></View>
@@ -87,9 +87,9 @@ export default class MyOrder extends Component {
         }
     }
 
-    render(){
-        let orderStyle = this.state.orderActive ? {borderColor:'#ccc'} :{}
-        return(
+    render() {
+        let orderStyle = this.state.orderActive ? {borderColor: '#ccc'} : {}
+        return (
             <View style={styles.container} onPress={this.jump}>
                 <TouchableOpacity onPress={this.jump}>
                     <Image source={this.props.data.url} style={styles.orderImage}/>
@@ -102,14 +102,14 @@ export default class MyOrder extends Component {
                         <Text style={styles.infoTxt} numberOfLines={1}>{this.props.data.info}</Text>
                     </TouchableOpacity>
                 </View>
-                <TouchableOpacity style={[styles.btnWrap,orderStyle]} onPress={this.beOrder}>
+                <TouchableOpacity style={[styles.btnWrap, orderStyle]} onPress={this.beOrder}>
                     {/*<View style={styles.unAlreadyWrap}>*/}
-                        {/*<View style={styles.lineHor}></View>*/}
-                        {/*<View style={styles.lineVer}></View>*/}
-                        {/*<Text style={styles.orderTxt}>订阅</Text>*/}
+                    {/*<View style={styles.lineHor}></View>*/}
+                    {/*<View style={styles.lineVer}></View>*/}
+                    {/*<Text style={styles.orderTxt}>订阅</Text>*/}
                     {/*</View>*/}
                     {/*<View style={styles.alreadyWrap}>*/}
-                        {/*<Text style={styles.alreadyTxt}>已订阅</Text>*/}
+                    {/*<Text style={styles.alreadyTxt}>已订阅</Text>*/}
                     {/*</View>*/}
                     {this.renderOrder()}
                 </TouchableOpacity>
@@ -119,75 +119,75 @@ export default class MyOrder extends Component {
 }
 
 const styles = StyleSheet.create({
-    container:{
-        height:70,
-        flexDirection:'row',
+    container: {
+        height: 70,
+        flexDirection: 'row',
         alignItems: 'center',
-        borderBottomWidth:1,
-        borderColor:'#e8e8e8'
+        borderBottomWidth: 1,
+        borderColor: '#e8e8e8'
     },
-    orderImage:{
-        width:44,
-        height:44,
-        borderRadius:22,
-        marginRight:10
+    orderImage: {
+        width: 44,
+        height: 44,
+        borderRadius: 22,
+        marginRight: 10
     },
-    txtWrap:{
-        width:width - 20 - 54 - 70,
-        marginRight:10
+    txtWrap: {
+        width: width - 20 - 54 - 70,
+        marginRight: 10
     },
-    nameTxt:{
-        color:'#333',
-        fontSize:13
+    nameTxt: {
+        color: '#333',
+        fontSize: 13
     },
-    infoTxt:{
-        color:'#ccc',
-        marginTop:5,
-        fontSize:12
+    infoTxt: {
+        color: '#ccc',
+        marginTop: 5,
+        fontSize: 12
     },
-    btnWrap:{
-        width:60,
-        height:24,
-        borderRadius:12,
-        borderWidth:1,
-        borderColor:'#e92230'
+    btnWrap: {
+        width: 60,
+        height: 24,
+        borderRadius: 12,
+        borderWidth: 1,
+        borderColor: '#e92230'
     },
-    unAlreadyWrap:{
-        width:60,
-        height:22,
+    unAlreadyWrap: {
+        width: 60,
+        height: 22,
         justifyContent: 'center',
         alignItems: 'flex-end',
     },
-    orderTxt:{
-        color:'#e92230',
-        fontSize:12,
-        marginRight:10
+    orderTxt: {
+        color: '#e92230',
+        fontSize: 12,
+        marginRight: 10
     },
-    lineVer:{
-        position:'absolute',
-        height:8,
-        width:1,
-        backgroundColor:'#e92230',
-        left:13.5,
-        top:7
+    lineVer: {
+        position: 'absolute',
+        height: 8,
+        width: 1,
+        backgroundColor: '#e92230',
+        left: 13.5,
+        top: 7
     },
-    lineHor:{
-        position:'absolute',
-        width:8,
-        height:1,
-        backgroundColor:'#e92230',
-        left:10,
-        top:10.5
+    lineHor: {
+        position: 'absolute',
+        width: 8,
+        height: 1,
+        backgroundColor: '#e92230',
+        left: 10,
+        top: 10.5
     },
-    alreadyWrap:{
-        width:60,
-        height:22,
+    alreadyWrap: {
+        width: 60,
+        height: 22,
         justifyContent: 'center',
         alignItems: 'center',
     },
-    alreadyTxt:{
-        color:'#ccc',
-        fontSize:12
+    alreadyTxt: {
+        color: '#ccc',
+        fontSize: 12
     }
 })
 

@@ -15,7 +15,7 @@ let {width, height, scale} = Dimensions.get('window');
 
 import Show from '../pages/Show'
 
-export default class Recommend extends Component{
+export default class Recommend extends Component {
     constructor(props) {
         super(props);
         this.edit = this.edit.bind(this)
@@ -23,10 +23,10 @@ export default class Recommend extends Component{
     }
 
     // 点击左侧删除按钮
-    edit(index){
+    edit(index) {
         let obj = this.context.store.getState().mySetThisReducer
-        obj.setState({shadowActive:true})
-        let action = {type:'setIndex',value:index}
+        obj.setState({shadowActive: true})
+        let action = {type: 'setIndex', value: index}
         this.context.store.dispatch(action)
         // console.log(this.context.store.getState())
     }
@@ -37,10 +37,12 @@ export default class Recommend extends Component{
     }
 
     // 渲染左侧删除块
-    renderEdit(){
-        return(
+    renderEdit() {
+        return (
             <View style={styles.editWrap}>
-                <TouchableOpacity style={styles.editBtn} onPress={()=>{this.edit(this.props.index)}}>
+                <TouchableOpacity style={styles.editBtn} onPress={() => {
+                    this.edit(this.props.index)
+                }}>
                     <View style={styles.editLine}>
 
                     </View>
@@ -50,17 +52,17 @@ export default class Recommend extends Component{
     }
 
     // 去详情页
-    jumpShow(){
+    jumpShow() {
         let nav = this.context.store.getState().myNavigator;
         nav.push({
-            component:Show,
-            passProps:this.props.data
+            component: Show,
+            passProps: this.props.data
         })
     }
 
-    render(){
-        return(
-            <View style={[styles.mainWrapper,this.props.specialStyle]}>
+    render() {
+        return (
+            <View style={[styles.mainWrapper, this.props.specialStyle]}>
                 {
                     this.props.editAcitve ? this.renderEdit() : null
                 }
@@ -99,77 +101,77 @@ export default class Recommend extends Component{
 }
 
 const styles = StyleSheet.create({
-    mainWrapper:{
-        flexDirection:'row',
+    mainWrapper: {
+        flexDirection: 'row',
         alignItems: 'center',
-        paddingTop:10,
-        paddingBottom:10,
-        borderBottomWidth:1,
-        borderBottomColor:'#e8e8e8'
+        paddingTop: 10,
+        paddingBottom: 10,
+        borderBottomWidth: 1,
+        borderBottomColor: '#e8e8e8'
         // paddingLeft:10,
         // paddingRight:10
     },
-    smallImg:{
-        width:width / 2 - 10,
-        height:width * 0.67 /2
+    smallImg: {
+        width: width / 2 - 10,
+        height: width * 0.67 / 2
     },
-    rightWrapper:{
-        width:width / 2 - 10,
-        paddingLeft:10,
-        paddingRight:10
+    rightWrapper: {
+        width: width / 2 - 10,
+        paddingLeft: 10,
+        paddingRight: 10
     },
-    right_Top:{
-        color:'#333',
-        fontSize:14
+    right_Top: {
+        color: '#333',
+        fontSize: 14
     },
-    right_Middle:{
-        color:'#999',
-        fontSize:12,
-        marginTop:10,
+    right_Middle: {
+        color: '#999',
+        fontSize: 12,
+        marginTop: 10,
     },
-    right_Bottom:{
-        flexDirection:'row',
-        marginTop:10
+    right_Bottom: {
+        flexDirection: 'row',
+        marginTop: 10
     },
-    leftIconWrap:{
-        flexDirection:'row',
+    leftIconWrap: {
+        flexDirection: 'row',
         alignItems: 'center',
     },
-    rightIconWrap:{
-        flexDirection:'row',
+    rightIconWrap: {
+        flexDirection: 'row',
         alignItems: 'center',
-        marginLeft:10
+        marginLeft: 10
     },
-    eyesIcon:{
-        width:14,
-        height:8
+    eyesIcon: {
+        width: 14,
+        height: 8
     },
-    msgIcon:{
-        width:12,
-        height:10
+    msgIcon: {
+        width: 12,
+        height: 10
     },
-    number:{
-        color:'#666',
-        fontSize:10,
-        marginLeft:5
+    number: {
+        color: '#666',
+        fontSize: 10,
+        marginLeft: 5
     },
-    editWrap:{
-        width:40,
+    editWrap: {
+        width: 40,
         justifyContent: 'center',
         alignItems: 'center',
     },
-    editBtn:{
-        width:26,
-        height:26,
-        borderWidth:1,
-        borderColor:'#e92230',
-        borderRadius:13,
+    editBtn: {
+        width: 26,
+        height: 26,
+        borderWidth: 1,
+        borderColor: '#e92230',
+        borderRadius: 13,
         justifyContent: 'center',
         alignItems: 'center',
     },
-    editLine:{
-        width:15,
-        height:1,
-        backgroundColor:'#e92230'
+    editLine: {
+        width: 15,
+        height: 1,
+        backgroundColor: '#e92230'
     }
 })

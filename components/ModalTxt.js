@@ -22,16 +22,16 @@ let {width, height, scale} = Dimensions.get('window');
 export default class ModalTxt extends Component {
     constructor(props) {
         super(props)
-        this.state={
+        this.state = {
             fadeInOpacity: new Animated.Value(0),
-            duration:500
+            duration: 500
         }
         this.modalAnimate = this.modalAnimate.bind(this)
     }
 
     // 挂载完成的时候触发动画
-    componentWillMount(){
-        let action = {type:'setModalTxt',value:this}
+    componentWillMount() {
+        let action = {type: 'setModalTxt', value: this}
         this.context.store.dispatch(action)
         this.modalAnimate(1)
     }
@@ -49,7 +49,7 @@ export default class ModalTxt extends Component {
     }
 
     // modal动画方法
-    modalAnimate(val){
+    modalAnimate(val) {
         Animated.timing(this.state.fadeInOpacity, {
             toValue: val, // 目标值
             duration: this.state.duration, // 动画时间
@@ -57,16 +57,16 @@ export default class ModalTxt extends Component {
         }).start();
 
         // 如果是显示，2000之后让它消失
-        if(val == 1){
-            this.timer = setTimeout(()=>{
+        if (val == 1) {
+            this.timer = setTimeout(() => {
                 this.modalAnimate(0)
-            },1500)
+            }, 1500)
         }
     }
 
-    render(){
-        return(
-            <Animated.View style={[styles.modalWrap,{
+    render() {
+        return (
+            <Animated.View style={[styles.modalWrap, {
                 opacity: this.state.fadeInOpacity
             }]}>
                 <Text style={styles.modalTxt}>{this.props.info}</Text>
@@ -76,19 +76,19 @@ export default class ModalTxt extends Component {
 }
 
 const styles = StyleSheet.create({
-    modalWrap:{
-        position:'absolute',
-        left:width * 0.7 / 2,
-        top:(height - 40) / 2,
+    modalWrap: {
+        position: 'absolute',
+        left: width * 0.7 / 2,
+        top: (height - 40) / 2,
         justifyContent: 'center',
         alignItems: 'center',
         width: width * 0.3,
         height: 40,
-        backgroundColor:'rgba(0,0,0,.5)',
-        borderRadius:5
+        backgroundColor: 'rgba(0,0,0,.5)',
+        borderRadius: 5
     },
-    modalTxt:{
-        color:'#fff',
-        fontSize:14
+    modalTxt: {
+        color: '#fff',
+        fontSize: 14
     },
 })

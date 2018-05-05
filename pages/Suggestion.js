@@ -9,33 +9,34 @@ import {
     ScrollView,
     TouchableOpacity,
     Dimensions,
-    TextInput
+    TextInput,
+    Platform
 } from 'react-native';
 
-import  Title from '../components/Title'
+import Title from '../components/Title'
 
 export default class MyOrder extends Component {
-    constructor(props){
+    constructor(props) {
         super(props)
-        this.state={
-            titleData:{
-                title:'意见反馈'
+        this.state = {
+            titleData: {
+                title: '意见反馈'
             },
-            btnAble:{},
-            btnAbleTxt:{}
+            btnAble: {},
+            btnAbleTxt: {}
         }
         this.info = this.info.bind(this)
         this.concatInfo = this.concatInfo.bind(this)
         this.checkInfo = this.checkInfo.bind(this)
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.txt1 = '';
         this.txt2 = '';
     }
 
     // 检测信息是否合格
-    checkInfo(){
+    checkInfo() {
         // 手机正则
         let check1 = this.txt1.trim() && /^1[34578]\d{9}$/.test(this.txt2)
         // qq正则
@@ -44,29 +45,29 @@ export default class MyOrder extends Component {
         let check3 = this.txt1.trim() && /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/.test(this.txt2)
 
         // 符合一个就行
-        if(check1 || check2 || check3){
-            this.setState({btnAble:{backgroundColor:'#e92230'},btnAbleTxt:{color:'#fff'}})
-        }else{
-            this.setState({btnAble:{},btnAbleTxt:{}})
+        if (check1 || check2 || check3) {
+            this.setState({btnAble: {backgroundColor: '#e92230'}, btnAbleTxt: {color: '#fff'}})
+        } else {
+            this.setState({btnAble: {}, btnAbleTxt: {}})
         }
     }
 
     // 意见建议信息
-    info(val){
+    info(val) {
         this.txt1 = val
         this.checkInfo();
     }
 
     // 联系信息
-    concatInfo(val){
+    concatInfo(val) {
         this.txt2 = val
         this.checkInfo();
     }
 
-    render(){
-        return(
+    render() {
+        return (
             <View style={styles.container}>
-                <Title navigator={this.props.navigator} data={this.state.titleData} />
+                <Title navigator={this.props.navigator} data={this.state.titleData}/>
                 <View style={styles.mainWrap}>
                     <View style={styles.infoWrap}>
                         <TextInput style={styles.txt1}
@@ -87,11 +88,11 @@ export default class MyOrder extends Component {
                         />
                     </View>
 
-                    <View style={{marginTop:5}}>
-                        <Text style={{color:'#ccc',fontSize:10}}>您的联系方式有助于我们沟通和解决问题，仅工作人员可见</Text>
+                    <View style={{marginTop: 5}}>
+                        <Text style={{color: '#ccc', fontSize: 10}}>您的联系方式有助于我们沟通和解决问题，仅工作人员可见</Text>
                     </View>
-                    <TouchableOpacity style={[styles.btnWrap,this.state.btnAble]}>
-                        <Text style={[{color:'#999'},this.state.btnAbleTxt]}>提交</Text>
+                    <TouchableOpacity style={[styles.btnWrap, this.state.btnAble]}>
+                        <Text style={[{color: '#999'}, this.state.btnAbleTxt]}>提交</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -100,48 +101,49 @@ export default class MyOrder extends Component {
 }
 
 const styles = StyleSheet.create({
-    container:{
-        flex:1,
-        backgroundColor:'#fff'
+    container: {
+        flex: 1,
+        backgroundColor: '#fff',
+        marginTop: Platform.OS === 'android' ? 0 : 10
     },
-    mainWrap:{
-        paddingLeft:10,
-        paddingRight:10,
-        marginTop:15
+    mainWrap: {
+        paddingLeft: 10,
+        paddingRight: 10,
+        marginTop: 15
     },
-    infoWrap:{
-        height:200,
+    infoWrap: {
+        height: 200,
         // backgroundColor:'yellow',
-        borderRadius:10,
-        borderWidth:1,
-        borderColor:'#ccc'
+        borderRadius: 10,
+        borderWidth: 1,
+        borderColor: '#ccc'
     },
-    txt1:{
-        height:200,
+    txt1: {
+        height: 200,
         textAlignVertical: 'top',
-        padding:5
+        padding: 5
     },
-    concatWrap:{
-        height:30,
+    concatWrap: {
+        height: 30,
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop:15,
-        borderRadius:6,
-        borderWidth:1,
-        borderColor:'#ccc'
+        marginTop: 15,
+        borderRadius: 6,
+        borderWidth: 1,
+        borderColor: '#ccc'
     },
-    txt2:{
-        fontSize:12,
-        height:60,
-        width:'100%'
+    txt2: {
+        fontSize: 12,
+        height: 60,
+        width: '100%'
         // backgroundColor:'green'
     },
-    btnWrap:{
-        height:40,
+    btnWrap: {
+        height: 40,
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius:20,
-        backgroundColor:'#eee',
-        marginTop:15
+        borderRadius: 20,
+        backgroundColor: '#eee',
+        marginTop: 15
     }
 })

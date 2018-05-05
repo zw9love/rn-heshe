@@ -28,13 +28,13 @@ export default class MyOrder extends Component {
             <View>
                 {/*StatusBar组件*/}
                 <StatusBar
-                animated={true}
-                hidden={false}
-                translucent={true}
-                //barStyle='light-content'
-                showHideTransition={'fade'}
-                    />
-                <View style={styles.hideStyle} />
+                    animated={true}
+                    hidden={false}
+                    translucent={true}
+                    //barStyle='light-content'
+                    showHideTransition={'fade'}
+                />
+                <View style={styles.hideStyle}/>
                 <View style={styles.container}>
                     <TouchableOpacity style={styles.backWrap} onPress={this.back}>
                         <Image source={require('../assets/images/back.png')} style={styles.backImage}/>
@@ -55,8 +55,8 @@ export default class MyOrder extends Component {
 
     renderEdit() {
         return (
-            <TouchableOpacity style={{padding:10,paddingRight:0}} onPress={this.edit}>
-                <Text style={{fontSize:14}}>{this.state.name}</Text>
+            <TouchableOpacity style={{padding: 10, paddingRight: 0}} onPress={this.edit}>
+                <Text style={{fontSize: 14}}>{this.state.name}</Text>
             </TouchableOpacity>
         )
     }
@@ -82,8 +82,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         flexDirection: 'row',
         alignItems: 'center',
-        borderBottomWidth:1,
-        borderColor:'#e8e8e8'
+        borderBottomWidth: 1,
+        borderColor: '#e8e8e8'
     },
     backImage: {
         height: 18,
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         height: 50
     },
-    hideStyle:{
-        height:StatusBar.currentHeight
+    hideStyle: {
+        height: StatusBar.currentHeight
     }
 })

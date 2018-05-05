@@ -13,16 +13,16 @@ import {
 } from 'react-native';
 
 export default class Search extends Component {
-    constructor(props){
+    constructor(props) {
         super(props)
         this.jump = this.jump.bind(this)
     }
 
     // 跳转页面
-    jump(){
+    jump() {
         let nav = this.context.store.getState().myNavigator;
         nav.push({
-            component:this.props.component,
+            component: this.props.component,
         })
     }
 
@@ -31,14 +31,15 @@ export default class Search extends Component {
         store: React.PropTypes.object.isRequired    // 子组件的  contextTypes 必须声明 这句很重要
     }
 
-    render(){
-        return(
+    render() {
+        return (
             <View style={styles.container}>
                 <TouchableOpacity style={styles.searchWrapper} onPress={this.jump}>
                     {
-                        this.props.imgHide ? null : <Image source={require('../assets/images/search.png')} style={styles.searchImage} />
+                        this.props.imgHide ? null :
+                            <Image source={require('../assets/images/search.png')} style={styles.searchImage}/>
                     }
-                    <Text style={{fontSize:14}}>{this.props.title}</Text>
+                    <Text style={{fontSize: 14}}>{this.props.title}</Text>
                 </TouchableOpacity>
             </View>
         )
@@ -46,22 +47,21 @@ export default class Search extends Component {
 }
 
 const styles = StyleSheet.create({
-    container:{
-    },
-    searchWrapper:{
-        height:30,
-        borderWidth:1,
-        borderColor:'#ccc',
-        marginTop:15,
-        marginBottom:15,
-        borderRadius:30,
-        flexDirection:'row',
+    container: {},
+    searchWrapper: {
+        height: 30,
+        borderWidth: 1,
+        borderColor: '#ccc',
+        marginTop: 15,
+        marginBottom: 15,
+        borderRadius: 30,
+        flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
     },
-    searchImage:{
-        width:15,
-        height:16,
-        marginRight:10,
+    searchImage: {
+        width: 15,
+        height: 16,
+        marginRight: 10,
     }
 })

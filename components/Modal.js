@@ -17,44 +17,44 @@ import {
 let {width, height, scale} = Dimensions.get('window');
 
 export default class MyOrder extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.sure = this.sure.bind(this)
         this.cancel = this.cancel.bind(this)
         this.modalAnimate = this.modalAnimate.bind(this)
-        this.state={
-            fadeInOpacity:new Animated.Value(0),
-            duration:200
+        this.state = {
+            fadeInOpacity: new Animated.Value(0),
+            duration: 200
         }
     }
 
     // 点击确定按钮方法
-    sure(){
+    sure() {
         this.modalAnimate(0);
-        this.timer = setTimeout(()=>{
-            this.props.obj.setState({shadowActive:false})
-        },this.state.duration)
+        this.timer = setTimeout(() => {
+            this.props.obj.setState({shadowActive: false})
+        }, this.state.duration)
         // 如果delete为真 则继续删除
-        if(!this.props.delete) return
+        if (!this.props.delete) return
         let index = this.context.store.getState().indexReducer
         let obj = this.context.store.getState().mySetThisReducer
         // let arr = obj.state.mainData
-        obj.state.mainData.splice(index,1)
+        obj.state.mainData.splice(index, 1)
     }
 
     // 点击取消按钮方法
-    cancel(){
+    cancel() {
         // let obj = this.context.store.getState().myLikeReducer
         // obj.setState({shadowActive:false})
         this.modalAnimate(0);
-        this.timer = setTimeout(()=>{
+        this.timer = setTimeout(() => {
             // let obj = this.context.store.getState().myLikeReducer
-            this.props.obj.setState({shadowActive:false})
-        },this.state.duration)
+            this.props.obj.setState({shadowActive: false})
+        }, this.state.duration)
     }
 
     // 挂载完成的时候触发动画
-    componentDidMount(){
+    componentDidMount() {
         this.modalAnimate(1);
     }
 
@@ -71,7 +71,7 @@ export default class MyOrder extends Component {
     }
 
     // modal动画方法
-    modalAnimate(val){
+    modalAnimate(val) {
         Animated.timing(this.state.fadeInOpacity, {
             toValue: val, // 目标值
             duration: this.state.duration, // 动画时间
@@ -79,9 +79,9 @@ export default class MyOrder extends Component {
         }).start();
     }
 
-    render(){
-        return(
-            <Animated.View style={[styles.shadowWrap,{
+    render() {
+        return (
+            <Animated.View style={[styles.shadowWrap, {
                 opacity: this.state.fadeInOpacity
             }]}>
                 {/*StatusBar组件*/}
@@ -95,14 +95,14 @@ export default class MyOrder extends Component {
                 />
                 <View style={styles.modalWrap}>
                     <View style={styles.modalTop}>
-                        <Text style={{fontSize:14,color:'#333'}}>是否{this.props.info}</Text>
+                        <Text style={{fontSize: 14, color: '#333'}}>是否{this.props.info}</Text>
                     </View>
                     <View style={styles.modalBottom}>
                         <TouchableOpacity style={styles.modalBtnLeft} onPress={this.sure}>
-                            <Text style={{fontSize:14,color:'#e92230'}}>确定</Text>
+                            <Text style={{fontSize: 14, color: '#e92230'}}>确定</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.modalBtnRight} onPress={this.cancel}>
-                            <Text style={{fontSize:14,color:'#e92230'}}>取消</Text>
+                            <Text style={{fontSize: 14, color: '#e92230'}}>取消</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -123,33 +123,33 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    modalWrap:{
-        borderRadius:10,
-        width:width * 0.7,
-        backgroundColor:'#fff'
+    modalWrap: {
+        borderRadius: 10,
+        width: width * 0.7,
+        backgroundColor: '#fff'
     },
-    modalTop:{
-        height:60,
-        borderBottomWidth:1,
-        borderColor:'#ccc',
+    modalTop: {
+        height: 60,
+        borderBottomWidth: 1,
+        borderColor: '#ccc',
         justifyContent: 'center',
         alignItems: 'center',
         // backgroundColor:'skyblue'
     },
-    modalBottom:{
-        height:40,
+    modalBottom: {
+        height: 40,
         // backgroundColor:'yellow',
-        flexDirection:'row',
+        flexDirection: 'row',
     },
-    modalBtnLeft:{
-        width:'50%',
+    modalBtnLeft: {
+        width: '50%',
         justifyContent: 'center',
         alignItems: 'center',
-        borderRightWidth:1,
-        borderColor:'#ccc'
+        borderRightWidth: 1,
+        borderColor: '#ccc'
     },
-    modalBtnRight:{
-        width:'50%',
+    modalBtnRight: {
+        width: '50%',
         justifyContent: 'center',
         alignItems: 'center',
     }
