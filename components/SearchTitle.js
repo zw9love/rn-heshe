@@ -44,6 +44,7 @@ export default class MyOrder extends Component {
                             underlineColorAndroid="transparent"
                             placeholder={this.props.data.searchName}
                             placeholderTextColor="#ccc"
+                            clearButtonMode="always"
                         />
                     </View>
                 </View>
@@ -90,8 +91,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     searchTxt: {
-        height: 40,
-        width: width - 75
+        // height: 40,
+        width: width - 85,
+        fontSize: 14,
+        marginLeft: 5
+        // lineHeight: 40
+        // flex: 1
+
     },
     searchImage: {
         width: 15,

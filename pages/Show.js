@@ -25,6 +25,7 @@ import OrderCell from '../components/OrderCell'
 import RecommendCell from '../components/RecommendCell'
 import CommentCell from '../components/CommentCell'
 import ModalTxt from '../components/ModalTxt'
+import style from '../assets/style/common'
 
 // 主要内容块Cell组件
 class MainCell extends Component {
@@ -506,7 +507,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#fff',
         paddingBottom: 40,
-        marginTop: Platform.OS === 'android' ? 0 : 15
+        marginTop: style.marginTop + 5
     },
     hideStyle: {
         height: StatusBar.currentHeight

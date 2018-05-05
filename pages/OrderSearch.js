@@ -16,6 +16,7 @@ import {
 import SearchTitle from '../components/SearchTitle'
 import OrderCell from '../components/OrderCell'
 import ModalTxt from '../components/ModalTxt'
+import style from '../assets/style/common'
 
 export default class MyOrder extends Component {
     constructor(props) {
@@ -89,7 +90,7 @@ export default class MyOrder extends Component {
         // 现在是一个锁要控制全部OrderCell 只能把lock放在父组件上 每个cell都有一个lock是不符合逻辑的
         this.count = 1;
         this.lock = false,
-            this.timer = null
+        this.timer = null
     }
 
 
@@ -135,7 +136,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
-        marginTop: Platform.OS === 'android' ? 0 : 10
+        marginTop: style.marginTop
     },
     mainWrap: {
         paddingLeft: 10,

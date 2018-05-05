@@ -19,6 +19,7 @@ let {width, height, scale} = Dimensions.get('window');
 import Title from '../components/Title'
 import RecommendCell from '../components/RecommendCell'
 import ModalTxt from '../components/ModalTxt'
+import style from '../assets/style/common'
 
 export default class OrderShow extends Component {
     constructor(props) {
@@ -170,7 +171,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
-        marginTop: Platform.OS === 'android' ? 0 : 10
+        marginTop: style.marginTop
     },
     header: {
         alignItems: 'center',

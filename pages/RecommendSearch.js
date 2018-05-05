@@ -15,6 +15,7 @@ import {
 
 import SearchTitle from '../components/SearchTitle'
 import RecommendCell from '../components/RecommendCell'
+import style from '../assets/style/common'
 
 export default class MyOrder extends Component {
     constructor(props) {
@@ -150,7 +151,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
-        marginTop: Platform.OS === 'android' ? 0 : 10
+        marginTop: style.marginTop
     },
     mainWrap: {
         paddingLeft: 10,

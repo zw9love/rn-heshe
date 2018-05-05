@@ -18,6 +18,7 @@ import {connect} from 'react-redux'
 import Title from '../components/Title'
 import RecommendCell from '../components/RecommendCell'
 import Modal from '../components/Modal'
+import style from '../assets/style/common'
 
 class MyLike extends Component {
     constructor(props) {
@@ -138,7 +139,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
-        marginTop: Platform.OS === 'android' ? 0 : 10
+        marginTop: style.marginTop
     },
     verticalScroll: {
         paddingLeft: 10,

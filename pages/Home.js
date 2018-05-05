@@ -18,6 +18,7 @@ import {
     StatusBar
 } from 'react-native';
 import Mock from 'mockjs'
+// var Mock = require('mockjs')
 
 import RecommendCell from '../components/RecommendCell'
 import BigRecommendCell from '../components/BigRecommendCell'
@@ -441,8 +442,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         marginBottom: 100,
         marginTop: style.marginTop
-        // marginTop: Platform.OS === 'android' ? 0 : 10
-        // marginTop: StatusBar.currentHeight + 20,
     },
     main: {
         position: 'relative'
@@ -489,6 +488,8 @@ const styles = StyleSheet.create({
         paddingRight: 15,
         paddingTop: 5,
         paddingBottom: 5,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     shadowWrapper: {
         width: width,
