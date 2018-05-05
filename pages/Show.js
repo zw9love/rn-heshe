@@ -506,7 +506,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#fff',
         paddingBottom: 40,
-        marginTop: Platform.OS === 'android' ? 0 : 10
+        marginTop: Platform.OS === 'android' ? 0 : 15
     },
     hideStyle: {
         height: StatusBar.currentHeight

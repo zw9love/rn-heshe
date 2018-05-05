@@ -33,6 +33,8 @@ import reducers from './redux/reducers'
 
 const store = createStore(reducers);
 
+// $(PRODUCT_NAME)
+
 export default class heshe extends Component {
     render() {
         return (
