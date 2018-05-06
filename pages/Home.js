@@ -487,7 +487,7 @@ const styles = StyleSheet.create({
         paddingLeft: 15,
         paddingRight: 15,
         paddingTop: 5,
-        paddingBottom: 5,
+        paddingBottom: 0,
         justifyContent: 'center',
         alignItems: 'center',
     },
