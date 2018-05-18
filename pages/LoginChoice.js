@@ -24,7 +24,7 @@ export default class LoginChoice extends Component {
         super(props)
         this.state = {
             titleData: {
-                title: ''
+                title: '选择登录方式'
             },
             mainData: [
                 {name: '新浪微博', url: require('../assets/images/share_weibo.png')},

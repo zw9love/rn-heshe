@@ -298,6 +298,7 @@ export default class Show extends Component {
                             autoFocus={true}
                             onChangeText={this.getMessage}
                             clearTextOnFocus={true}
+                            multiline={true}
                         />
                     </View>
                 </View>
@@ -652,7 +653,8 @@ const styles = StyleSheet.create({
         width: width - 20,
         // backgroundColor:'yellow',
         textAlignVertical: 'top',
-        padding: 0
+        padding: 0,
+        fontSize: 12
     },
 
     fixedWrap: {

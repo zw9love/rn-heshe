@@ -21,7 +21,7 @@ import Title from '../components/Title'
 import RecommendCell from '../components/RecommendCell'
 import Modal from '../components/Modal'
 import style from '../assets/style/common'
-import Mock from "mockjs";
+import Mock from "mockjs"
 
 class MyLike extends Component {
     constructor(props) {

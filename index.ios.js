@@ -41,7 +41,7 @@ export default class heshe extends Component {
             <Provider store={store}>
                 <View style={styles.container}>
                     <Navigator
-                        initialRoute={{name: 'Advertisement', component: Home
+                        initialRoute={{name: 'Advertisement', component: Advertisement
                         }}
                         renderScene={(route, navigator) =>{
                             let Component =  route.component;

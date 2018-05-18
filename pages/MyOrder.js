@@ -10,13 +10,16 @@ import {
     TouchableOpacity,
     Image,
     Dimensions,
-    ListView, Platform
+    ListView,
+    Platform,
+    FlatList
 } from 'react-native';
 
 import Title from '../components/Title'
 import AlreadyOrderCell from '../components/AlreadyOrderCell'
 import OrderSearch from './OrderSearch'
 import style from '../assets/style/common'
+import Mock from "mockjs";
 
 export default class MyOrder extends Component {
     constructor(props) {
@@ -25,158 +28,19 @@ export default class MyOrder extends Component {
             titleData: {
                 title: '我的订阅'
             },
-            mainData: [
-                {
-                    name: '全民星探1',
-                    num: '22',
-                    time: '22:08',
-                    url: require('../assets/images/demo1.jpg'),
-                    info: '著名奶爸耍大牌经纪人一年四换，片场的话著名奶爸耍大牌经纪人一年四换，片场的话'
-                },
-                {
-                    name: '全民星探2',
-                    num: '22',
-                    time: '22:08',
-                    url: require('../assets/images/demo2.jpg'),
-                    info: '著名奶爸耍大牌经纪人一年四换，片场的话著名奶爸耍大牌经纪人一年四换，片场的话'
-                },
-                {
-                    name: '全民星探3',
-                    num: '22',
-                    time: '12:08',
-                    url: require('../assets/images/demo3.jpg'),
-                    info: '著名奶爸耍大牌经纪人一年四换，片场的话著名奶爸耍大牌经纪人一年四换，片场的话'
-                },
-                {
-                    name: '全民星探4',
-                    num: '22',
-                    time: '14:22',
-                    url: require('../assets/images/demo4.jpg'),
-                    info: '著名奶爸耍大牌经纪人一年四换，片场的话著名奶爸耍大牌经纪人一年四换，片场的话'
-                },
-                {
-                    name: '全民星探5',
-                    num: '22',
-                    time: '22:08',
-                    url: require('../assets/images/demo5.jpg'),
-                    info: '著名奶爸耍大牌经纪人一年四换，片场的话著名奶爸耍大牌经纪人一年四换，片场的话'
-                },
-                {
-                    name: '全民星探6',
-                    num: '22',
-                    time: '22:08',
-                    url: require('../assets/images/demo1.jpg'),
-                    info: '著名奶爸耍大牌经纪人一年四换，片场的话著名奶爸耍大牌经纪人一年四换，片场的话'
-                },
-                {
-                    name: '全民星探7',
-                    num: '22',
-                    time: '13:51',
-                    url: require('../assets/images/demo2.jpg'),
-                    info: '著名奶爸耍大牌经纪人一年四换，片场的话著名奶爸耍大牌经纪人一年四换，片场的话'
-                },
-                {
-                    name: '全民星探8',
-                    num: '22',
-                    time: '22:08',
-                    url: require('../assets/images/demo3.jpg'),
-                    info: '著名奶爸耍大牌经纪人一年四换，片场的话著名奶爸耍大牌经纪人一年四换，片场的话'
-                },
-                {
-                    name: '全民星探9',
-                    num: '22',
-                    time: '22:08',
-                    url: require('../assets/images/demo4.jpg'),
-                    info: '著名奶爸耍大牌经纪人一年四换，片场的话著名奶爸耍大牌经纪人一年四换，片场的话'
-                },
-                {
-                    name: '全民星探10',
-                    num: '22',
-                    time: '22:08',
-                    url: require('../assets/images/demo5.jpg'),
-                    info: '著名奶爸耍大牌经纪人一年四换，片场的话著名奶爸耍大牌经纪人一年四换，片场的话'
-                },
-                {
-                    name: '全民星探1',
-                    num: '22',
-                    time: '22:08',
-                    url: require('../assets/images/demo1.jpg'),
-                    info: '著名奶爸耍大牌经纪人一年四换，片场的话著名奶爸耍大牌经纪人一年四换，片场的话'
-                },
-                {
-                    name: '全民星探2',
-                    num: '22',
-                    time: '22:08',
-                    url: require('../assets/images/demo2.jpg'),
-                    info: '著名奶爸耍大牌经纪人一年四换，片场的话著名奶爸耍大牌经纪人一年四换，片场的话'
-                },
-                {
-                    name: '全民星探3',
-                    num: '22',
-                    time: '12:08',
-                    url: require('../assets/images/demo3.jpg'),
-                    info: '著名奶爸耍大牌经纪人一年四换，片场的话著名奶爸耍大牌经纪人一年四换，片场的话'
-                },
-                {
-                    name: '全民星探4',
-                    num: '22',
-                    time: '14:22',
-                    url: require('../assets/images/demo4.jpg'),
-                    info: '著名奶爸耍大牌经纪人一年四换，片场的话著名奶爸耍大牌经纪人一年四换，片场的话'
-                },
-                {
-                    name: '全民星探5',
-                    num: '22',
-                    time: '22:08',
-                    url: require('../assets/images/demo5.jpg'),
-                    info: '著名奶爸耍大牌经纪人一年四换，片场的话著名奶爸耍大牌经纪人一年四换，片场的话'
-                },
-                {
-                    name: '全民星探6',
-                    num: '22',
-                    time: '22:08',
-                    url: require('../assets/images/demo1.jpg'),
-                    info: '著名奶爸耍大牌经纪人一年四换，片场的话著名奶爸耍大牌经纪人一年四换，片场的话'
-                },
-                {
-                    name: '全民星探7',
-                    num: '22',
-                    time: '13:51',
-                    url: require('../assets/images/demo2.jpg'),
-                    info: '著名奶爸耍大牌经纪人一年四换，片场的话著名奶爸耍大牌经纪人一年四换，片场的话'
-                },
-                {
-                    name: '全民星探8',
-                    num: '22',
-                    time: '22:08',
-                    url: require('../assets/images/demo3.jpg'),
-                    info: '著名奶爸耍大牌经纪人一年四换，片场的话著名奶爸耍大牌经纪人一年四换，片场的话'
-                },
-                {
-                    name: '全民星探9',
-                    num: '22',
-                    time: '22:08',
-                    url: require('../assets/images/demo4.jpg'),
-                    info: '著名奶爸耍大牌经纪人一年四换，片场的话著名奶爸耍大牌经纪人一年四换，片场的话'
-                },
-                {
-                    name: '全民星探10',
-                    num: '22',
-                    time: '22:08',
-                    url: require('../assets/images/demo5.jpg'),
-                    info: '著名奶爸耍大牌经纪人一年四换，片场的话著名奶爸耍大牌经纪人一年四换，片场的话'
-                },
-            ],
+            mainData: [],
             dataSource: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
         }
 
         this.jump = this.jump.bind(this)
         this.renderAlreadyOrderCell = this.renderAlreadyOrderCell.bind(this)
+        this.renderMainDataItem = this.renderMainDataItem.bind(this)
+        this.mainScrollEndReached = this.mainScrollEndReached.bind(this)
     }
 
     componentDidMount() {
         let data = this.state.mainData
-        this.setState({dataSource: this.state.dataSource.cloneWithRows(data)})
+        this.setState({dataSource: this.state.dataSource.cloneWithRows(data), mainData: this.getMockData()})
     }
 
     renderRow(data) {
@@ -206,6 +70,39 @@ export default class MyOrder extends Component {
         })
     }
 
+    getMockData() {
+        let data = Mock.mock({
+            // 属性 list 的值是一个数组，其中含有 1 到 10 个元素
+            'list|20': [{
+                // 属性 id 是一个自增数，起始值为 1，每次增 1
+                id: '@id',
+                name: '@cname',
+                info: '@ctitle(10,50)',
+                num: '@integer(0,10000)',
+                time: '@time("HH:mm")',
+                url: require('../assets/images/demo5.jpg')
+            }]
+        }).list
+        return data
+    }
+
+    renderMainDataKey(item, index) {
+        return index
+    }
+
+    renderMainDataItem({item, index}) {
+        return (<AlreadyOrderCell key={index} index={index} data={item}/>)
+    }
+
+    mainScrollEndReached() {
+        if (!this.refreshLock) {
+            this.refreshLock = true
+            this.setState({mainData: this.state.mainData.concat(this.getMockData())})
+            this.refreshLock = false
+        }
+    }
+
+
     render() {
         return (
             <View style={styles.container}>
@@ -214,15 +111,25 @@ export default class MyOrder extends Component {
                     <View style={{paddingLeft: 10, paddingRight: 10}}>
                         <TouchableOpacity style={styles.searchWrap} onPress={this.jump}>
                             <View style={styles.addWrap}>
-                                <View style={styles.horLine}></View>
-                                <View style={styles.verLine}></View>
+                                <View style={styles.horLine}/>
+                                <View style={styles.verLine}/>
                             </View>
                             <Text style={{color: '#ea303d', fontSize: 14}}>添加更多订阅号</Text>
                         </TouchableOpacity>
                     </View>
-                    <View style={{paddingLeft: 10, paddingRight: 10}}>
-                        {this.renderAlreadyOrderCell()}
-                    </View>
+                    {/*<View style={{paddingLeft: 10, paddingRight: 10}}>*/}
+                    {/*{this.renderAlreadyOrderCell()}*/}
+                    {/*</View>*/}
+                    <FlatList
+                        style={{paddingLeft: 10, paddingRight: 10}}
+                        data={this.state.mainData}
+                        keyExtractor={this.renderMainDataKey}
+                        renderItem={this.renderMainDataItem}
+                        onEndReachedThreshold={0.95}
+                        onEndReached={this.mainScrollEndReached}
+                        refreshing={true}
+                    />
+
                     {/*<ListView*/}
                     {/*dataSource={this.state.dataSource}*/}
                     {/*renderRow={this.renderRow}*/}

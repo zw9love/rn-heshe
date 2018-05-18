@@ -19,6 +19,7 @@ const Dimensions = require('Dimensions');
 let {width, height} = Dimensions.get('window');
 
 import Home from './Home'
+import style from '../assets/style/common'
 
 export default React.createClass({
     mixins: [TimerMixin],
@@ -107,7 +108,7 @@ const styles = StyleSheet.create({
     txtWrap: {
         position: 'absolute',
         right: 20,
-        top: 20,
+        top: 20 + style.marginTop,
         justifyContent: 'center',
         alignItems: 'center',
     },

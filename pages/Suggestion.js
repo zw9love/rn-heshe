@@ -125,10 +125,10 @@ const styles = StyleSheet.create({
     txt1: {
         height: 200,
         textAlignVertical: 'top',
-        padding: 5,
+        padding: 10,
+        paddingTop: 5,
+        paddingBottom: 5,
         fontSize: 12
-        // alignItems: 'flex-start',
-        // justifyContent: 'flex-start',
     },
     concatWrap: {
         height: 30,
