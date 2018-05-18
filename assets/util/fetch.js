@@ -3,6 +3,7 @@
  */
 import 'whatwg-fetch'
 
+// fetch能否解决https加密接口问题
 export function fetchData(url, data = {}, fn) {
 
     // let apiAddr = 'http://127.0.0.1:8888/api'

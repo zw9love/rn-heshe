@@ -432,9 +432,10 @@ export default class Home extends Component {
             firstStyle = i === 0 ? {marginLeft: 0} : {}
             specialStyle = i === currentIndex ? {color: '#e92230', borderColor: '#e92230'} : {}
             arr.push(
-                <TouchableOpacity key={i} onPress={() => {
-                    this.secondNavClick(i)
-                }}>
+                <TouchableOpacity
+                  key={i}
+                  onPress={() => {this.secondNavClick(i)}}
+                >
                     <Text style={[styles.secondNav, specialStyle, firstStyle]}>
                         {msg}
                     </Text>
@@ -510,8 +511,8 @@ const styles = StyleSheet.create({
         marginLeft: 20
     },
     secondNav: {
-        fontSize: 14,
-        height: 30,
+        fontSize: 12,
+        // height: 30,
         color: '#666',
         borderRadius: 15,
         borderWidth: 1,
@@ -520,9 +521,10 @@ const styles = StyleSheet.create({
         paddingLeft: 15,
         paddingRight: 15,
         paddingTop: 5,
-        paddingBottom: 0,
+        paddingBottom: 5,
         justifyContent: 'center',
         alignItems: 'center',
+        // backgroundColor: 'yellow'
     },
     shadowWrapper: {
         width: width,
