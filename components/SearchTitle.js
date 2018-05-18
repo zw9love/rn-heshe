@@ -45,6 +45,7 @@ export default class MyOrder extends Component {
                             placeholder={this.props.data.searchName}
                             placeholderTextColor="#ccc"
                             clearButtonMode="always"
+                            // multiline={true}
                         />
                     </View>
                 </View>
@@ -91,11 +92,14 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     searchTxt: {
-        // height: 40,
         width: width - 85,
-        fontSize: 14,
-        marginLeft: 5
-        // lineHeight: 40
+        fontSize: 12,
+        marginLeft: 5,
+        height: 32,
+        // backgroundColor: 'yellow',
+        // textAlignVertical: 'center',
+        paddingVertical: 0
+        // boxSizing: 'border-box'
         // flex: 1
 
     },

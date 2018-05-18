@@ -32,7 +32,7 @@ import PhoneLogin from './pages/PhoneLogin'
 import reducers from './redux/reducers'
 
 const store = createStore(reducers);
-
+// export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools;
 export default class heshe extends Component {
   render() {
     return (
