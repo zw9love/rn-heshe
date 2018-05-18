@@ -1,5 +1,5 @@
 /**
- * Created by Administrator on 2017/4/16.
+ * Created by zw9love on 2017/4/16.
  */
 import React, {Component} from 'react';
 import {
@@ -15,11 +15,12 @@ import {
     Platform,
     Animated,
     Easing,
-    StatusBar
+    StatusBar,
+    FlatList
 } from 'react-native';
 import Mock from 'mockjs'
 // var Mock = require('mockjs')
-
+import 'whatwg-fetch'
 import RecommendCell from '../components/RecommendCell'
 import BigRecommendCell from '../components/BigRecommendCell'
 import Search from '../components/Search'
@@ -32,6 +33,7 @@ import OrderSearch from './OrderSearch'
 import RecommendSearch from './RecommendSearch'
 import Modal from '../components/Modal'
 import style from '../assets/style/common'
+import {fetchData} from '../assets/util/fetch'
 
 let {width, height, scale} = Dimensions.get('window');
 
@@ -69,22 +71,7 @@ export default class Home extends Component {
                 '咨询2', '人物2', '买手2', '设计师2', '时尚周2', '智慧少年2', '生活2',
                 '咨询3', '人物3', '买手3', '设计师3', '时尚周3', '智慧少年3', '生活3',
             ],
-            mainData: [
-                {orderName: '时尚芭莎', title: '卡通人物客串super modal 这样很disney', eyes: '267', msgs: '78'},
-                {orderName: '男人装', title: '除了小白裙，你还可以这样穿这些白色过夏天', eyes: '342', msgs: '261'},
-                {orderName: '男人装', title: '这双珍珠鞋到底有多美？连蕾哈娜穿上都不肯脱下来1', eyes: '666', msgs: '888'},
-                {orderName: '时尚芭莎1', title: '欧洲杯期间，穿的美美的看球才是正经事', eyes: '777', msgs: '999'},
-                {orderName: '男人装', title: '这双珍珠鞋到底有多美？连蕾哈娜穿上都不肯脱下来3', eyes: '888', msgs: '111'},
-                {orderName: '男人装', title: '这双珍珠鞋到底有多美？连蕾哈娜穿上都不肯脱下来4', eyes: '999', msgs: '378'},
-                {orderName: '男人装', title: '这双珍珠鞋到底有多美？连蕾哈娜穿上都不肯脱下来5', eyes: '123', msgs: '456'},
-                {
-                    orderName: '时尚芭莎2',
-                    title: '欧洲杯期间，穿的美美的看球才是正经事',
-                    eyes: '123',
-                    msgs: '456',
-                    url: require('../assets/images/demo4.jpg')
-                },
-            ],
+            mainData: [],
             asideData: [
                 {url: require('../assets/images/myorder.png'), name: '我的订阅', component: MyOrder},
                 {url: require('../assets/images/star.png'), name: '我的收藏', component: MyLike},
@@ -99,7 +86,8 @@ export default class Home extends Component {
             fadeInOpacity: new Animated.Value(0),
             asideLeft: new Animated.Value(0),
             mainShadowActive: false,
-            shadowActive: false
+            shadowActive: false,
+            refreshLock: false
         }
 
         this.onBackAndroid = this.onBackAndroid.bind(this)
@@ -110,6 +98,9 @@ export default class Home extends Component {
         this.jump = this.jump.bind(this)
         this.jumpLogin = this.jumpLogin.bind(this)
         this.asideAnimate = this.asideAnimate.bind(this)
+        this.renderMainDataKey = this.renderMainDataKey.bind(this)
+        this.renderMainDataItem = this.renderMainDataItem.bind(this)
+        this.mainScrollEndReached = this.mainScrollEndReached.bind(this)
     }
 
     componentWillMount() {
@@ -121,10 +112,25 @@ export default class Home extends Component {
         // 设置navigator放在store里
         let action = {type: 'setNavigator', value: this.props.navigator}
         this.context.store.dispatch(action)
+        this.setState({mainData: this.getMockData()})
         // console.log(StatusBar) // 安卓才能获得状态栏高度
+
+        // fetch('http://v.juhe.cn/weather/index?format=2&cityname=%E4%B8%8A%E6%B5%B7&key=71efbb690b9bc9a389ad90502306c8cd')
+        //     .then((response) => response.json())
+        //     .then((responseData) => {
+        //         console.log(responseData)
+        //         // this.setState({
+        //         //     weather: !responseData.result ? "" : responseData.result.sk
+        //         // });
+        //     })
+        // .done();
+
+        // fetchData('/count/get', null, res => {
+        //     console.log(res)
+        // })
     }
 
-    // 必须声明这玩意 子组件才能拿到store
+    // 必须声明这玩意 子组件才能拿到storemainScrollEndReached
     static contextTypes = {
         store: React.PropTypes.object.isRequired    // 子组件的  contextTypes 必须声明 这句很重要
     }
@@ -152,6 +158,46 @@ export default class Home extends Component {
                 ToastAndroid.show('再按一次退出应用', ToastAndroid.SHORT);
             }
             return true;
+        }
+    }
+
+    getMockData() {
+        let data = Mock.mock({
+            // 属性 list 的值是一个数组，其中含有 1 到 10 个元素
+            'list|8': [{
+                // 属性 id 是一个自增数，起始值为 1，每次增 1
+                id: '@id',
+                orderName: '@cname',
+                title: '@title(3, 5)',
+                eyes: '@integer(0,10000)',
+                msgs: '@integer(0,10000)'
+            }]
+        }).list
+        return data
+    }
+
+    renderMainDataKey(item, index) {
+        return item.id
+    }
+
+    renderMainDataItem({item, index}) {
+        let specialStyle = index === 0 ? {paddingTop: 0} : {}
+        if ((index + 1) % 4 === 0) {
+            return (
+                <BigRecommendCell key={index} data={item} specialStyle={specialStyle}/>
+            )
+        } else {
+            return (
+                <RecommendCell key={index} data={item} specialStyle={specialStyle}/>
+            )
+        }
+    }
+
+    mainScrollEndReached() {
+        if (!this.refreshLock) {
+            this.refreshLock = true
+            this.setState({mainData: this.state.mainData.concat(this.getMockData())})
+            this.refreshLock = false
         }
     }
 
@@ -203,11 +249,21 @@ export default class Home extends Component {
                         {this.renderSecond()}
                     </View>
                     {/*页面主内容*/}
-                    <ScrollView
+                    {/*<ScrollView*/}
+                    {/*style={styles.verticalScroll}*/}
+                    {/*>*/}
+                    {/*{this.renderRecommendCell()}*/}
+                    {/*</ScrollView>*/}
+                    <FlatList
                         style={styles.verticalScroll}
-                    >
-                        {this.renderRecommendCell()}
-                    </ScrollView>
+                        data={this.state.mainData}
+                        extraData={this.state.mainData}
+                        keyExtractor={this.renderMainDataKey}
+                        renderItem={this.renderMainDataItem}
+                        onEndReachedThreshold={0.95}
+                        onEndReached={this.mainScrollEndReached}
+                        refreshing={true}
+                    />
                     {/*服了，这遮罩玩意还只能放最后啊*/}
                     {this.state.mainShadowActive ? this.renderShadow() : null}
                 </Animated.View>
@@ -317,8 +373,8 @@ export default class Home extends Component {
         let specialStyle;
         let firstStyle = {};
         data.map((msg, i) => {
-            firstStyle = i == 0 ? {marginLeft: 0} : {}
-            specialStyle = i == currentIndex ? {color: '#e92230', fontSize: 18} : {}
+            firstStyle = i === 0 ? {marginLeft: 0} : {}
+            specialStyle = i === currentIndex ? {color: '#e92230', fontSize: 18} : {}
             arr.push(
                 <TouchableOpacity key={i} onPress={() => {
                     this.firstNavClick(i)
@@ -333,20 +389,8 @@ export default class Home extends Component {
     }
 
     firstNavClick(index) {
-        // alert(index)
         this.setState({firstIndex: index})
-        let data = Mock.mock({
-            // 属性 list 的值是一个数组，其中含有 1 到 10 个元素
-            'list|8': [{
-                // 属性 id 是一个自增数，起始值为 1，每次增 1
-                id: '@id',
-                orderName: '@cname',
-                title: '@title(3, 5)',
-                eyes: '@integer(0,10000)',
-                msgs: '@integer(0,10000)'
-            }]
-        }).list
-        this.setState({mainData: data})
+        this.setState({mainData: this.getMockData()})
         // 输出结果
         // console.log(data)
     }
@@ -401,20 +445,8 @@ export default class Home extends Component {
     }
 
     secondNavClick(index) {
-        // alert(index)
         this.setState({secondIndex: index})
-        let data = Mock.mock({
-            // 属性 list 的值是一个数组，其中含有 1 到 10 个元素
-            'list|8': [{
-                // 属性 id 是一个自增数，起始值为 1，每次增 1
-                id: '@id',
-                orderName: '@cname',
-                title: '@title(3, 5)',
-                eyes: '@integer(0,10000)',
-                msgs: '@integer(0,10000)'
-            }]
-        }).list
-        this.setState({mainData: data})
+        this.setState({mainData: this.getMockData()})
     }
 
     renderRecommendCell() {
@@ -470,7 +502,8 @@ const styles = StyleSheet.create({
     verticalScroll: {
         paddingLeft: 10,
         paddingRight: 10,
-        marginBottom: 155 + StatusBar.currentHeight
+        marginBottom: Platform.OS === 'android' ? 155 + StatusBar.currentHeight : 125,
+        height: '100%'
     },
     firstNav: {
         fontSize: 16,
@@ -496,6 +529,7 @@ const styles = StyleSheet.create({
         height: height,
         position: 'absolute',
         left: 0,
+        // top: - getNeedMargin(),
         top: 0,
         zIndex: 100,
         backgroundColor: 'rgba(0,0,0,.3)'

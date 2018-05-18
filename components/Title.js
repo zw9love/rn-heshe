@@ -1,5 +1,5 @@
 /**
- * Created by Administrator on 2017/4/28.
+ * Created by zw9love on 2017/4/28.
  */
 import React, {Component} from 'react';
 import {
@@ -72,7 +72,7 @@ export default class MyOrder extends Component {
     edit() {
         this.count++;
         this.count % 2 ? this.setState({name: '完成'}) : this.setState({name: '编辑'})
-        this.props.changeEditAcitve()
+        this.props.changeEditActive()
     }
 }
 

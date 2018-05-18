@@ -1,15 +1,7 @@
-import {Platform} from "react-native";
-import { ifIphoneX } from 'react-native-iphone-x-helper'
+import {getNeedMargin} from '../util/index'
 
-let marginTop = 0
+let marginTop = getNeedMargin()
 
-if(ifIphoneX()){
-    // console.log('ifIphoneX = ' + ifIphoneX())
-    marginTop = 30
-
-}else{
-    marginTop = Platform.OS === 'android' ? 0 : 15
-}
 
 export default {
     marginTop: marginTop

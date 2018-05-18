@@ -25,7 +25,7 @@ export default class PhoneLogin extends Component {
         super(props)
         this.state = {
             titleData: {
-                title: ''
+                title: '手机号登录'
             },
             mainData: [
                 {name: '新浪微博', url: require('../assets/images/share_weibo.png')},
@@ -138,6 +138,7 @@ export default class PhoneLogin extends Component {
                             maxLength={11}
                             keyboardType="numeric"
                             onChangeText={this.phoneNumber}
+                            clearButtonMode='always'
                         />
                     </View>
                     <View style={styles.centerWrap}>
@@ -150,6 +151,7 @@ export default class PhoneLogin extends Component {
                                 maxLength={4}
                                 keyboardType="numeric"
                                 onChangeText={this.verificationNumber}
+                                clearButtonMode='always'
                             />
                         </View>
                         <TouchableOpacity style={[styles.rightBtnWrap, verificationAbleStyle]}
@@ -189,7 +191,9 @@ const styles = StyleSheet.create({
         marginTop: 15,
         borderRadius: 18,
         borderWidth: 1,
-        borderColor: '#ccc'
+        borderColor: '#ccc',
+        paddingLeft: 10,
+        paddingRight: 10
     },
     txt: {
         height: 72,
@@ -208,7 +212,9 @@ const styles = StyleSheet.create({
         borderRadius: 18,
         borderWidth: 1,
         borderColor: '#ccc',
-        width: width - 20 - 10 - width / 3
+        width: width - 20 - 10 - width / 3,
+        paddingLeft: 10,
+        paddingRight: 10
     },
     rightBtnWrap: {
         width: width / 3,

@@ -1,5 +1,5 @@
 /**
- * Created by Administrator on 2017/4/29.
+ * Created by zw9love on 2017/4/29.
  */
 import React, {Component} from 'react';
 import {
@@ -154,7 +154,7 @@ export default class CommentCell extends Component {
         return (
             <View style={styles.container}>
                 {
-                    this.props.editAcitve ? this.renderEdit() : null
+                    this.props.editActive ? this.renderEdit() : null
                 }
                 <View style={styles.infoWrap}>
                     <View style={styles.infoTopWrap}>

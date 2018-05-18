@@ -1,5 +1,5 @@
 /**
- * Created by Administrator on 2017/4/28.
+ * Created by zw9love on 2017/4/28.
  */
 import React, {Component} from 'react';
 import {
@@ -76,6 +76,8 @@ export default class MyOrder extends Component {
                                    placeholder="请留下您的宝贵意见..."
                                    placeholderTextColor="#ccc"
                                    onChangeText={this.info}
+                                   clearButtonMode='always'
+                                   multiline={true}
                         />
                     </View>
 
@@ -86,10 +88,11 @@ export default class MyOrder extends Component {
                             placeholder="联系方式：QQ、邮箱或手机"
                             placeholderTextColor="#ccc"
                             onChangeText={this.concatInfo}
+                            clearButtonMode='always'
                         />
                     </View>
 
-                    <View style={{marginTop: 5}}>
+                    <View style={{marginTop: 5, paddingLeft: 10, paddingRight: 10}}>
                         <Text style={{color: '#ccc', fontSize: 10}}>您的联系方式有助于我们沟通和解决问题，仅工作人员可见</Text>
                     </View>
                     <TouchableOpacity style={[styles.btnWrap, this.state.btnAble]}>
@@ -122,7 +125,10 @@ const styles = StyleSheet.create({
     txt1: {
         height: 200,
         textAlignVertical: 'top',
-        padding: 5
+        padding: 5,
+        fontSize: 12
+        // alignItems: 'flex-start',
+        // justifyContent: 'flex-start',
     },
     concatWrap: {
         height: 30,
@@ -131,7 +137,9 @@ const styles = StyleSheet.create({
         marginTop: 15,
         borderRadius: 6,
         borderWidth: 1,
-        borderColor: '#ccc'
+        borderColor: '#ccc',
+        paddingLeft: 10,
+        paddingRight: 10,
     },
     txt2: {
         fontSize: 12,

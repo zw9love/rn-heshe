@@ -1,5 +1,5 @@
 /**
- * Created by Administrator on 2017/4/16.
+ * Created by zw9love on 2017/4/16.
  */
 import React, {Component} from 'react';
 import {
@@ -14,6 +14,7 @@ import {
 let {width, height, scale} = Dimensions.get('window');
 
 import Show from '../pages/Show'
+import ImageButton from '../components/ImageButton'
 
 export default class Recommend extends Component {
     constructor(props) {
@@ -64,11 +65,22 @@ export default class Recommend extends Component {
         return (
             <View style={[styles.mainWrapper, this.props.specialStyle]}>
                 {
-                    this.props.editAcitve ? this.renderEdit() : null
+                    this.props.editActive ? this.renderEdit() : null
                 }
-                <TouchableOpacity style={styles.leftWrapper} onPress={this.jumpShow}>
-                    <Image source={this.props.data.url || require('../assets/images/p1.jpg')} style={styles.smallImg}/>
-                </TouchableOpacity>
+                {/*<TouchableOpacity style={styles.leftWrapper} onPress={this.jumpShow}>*/}
+                    {/*/!*<Image source={this.props.data.url || require('../assets/images/p1.jpg')} style={styles.smallImg}/>*!/*/}
+                    {/*/!*<Image source={{uri: 'http://localhost:8081/assets/images/p1.jpg'}} style={styles.smallImg}/>*!/*/}
+                    {/*/!*<Image source={{uri: 'http://127.0.0.1:8888/static/img/beeeye_yellow.aaa9fed.png'}} style={styles.smallImg}/>*!/*/}
+                    {/*<Image defaultSource={require('../assets/images/demo1.jpg')} source={{uri: 'https://i10.hoopchina.com.cn/hupuapp/bbs/340/31469340/thread_34_31469340_20180518085657_s_168080_h_1049px_w_700px79229.jpg'}} style={styles.smallImg}/>*/}
+                {/*</TouchableOpacity>*/}
+                <ImageButton
+                    defaultSource={require('../assets/images/p1.jpg')}
+                    // source={{uri: 'https://i10.hoopchina.com.cn/hupuapp/bbs/340/31469340/thread_34_31469340_20180518085657_s_168080_h_1049px_w_700px79229.jpg'}}
+                    source={this.props.data.url}
+                    style={styles.smallImg}
+                    onPress={this.jumpShow}
+                />
+
                 <View style={styles.rightWrapper}>
                     <TouchableOpacity onPress={this.jumpShow}>
                         <Text numberOfLines={2} style={styles.right_Top}>

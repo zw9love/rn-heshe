@@ -1,5 +1,5 @@
 /**
- * Created by Administrator on 2017/4/28.
+ * Created by zw9love on 2017/4/28.
  */
 import React, {Component} from 'react';
 import {
@@ -78,11 +78,11 @@ export default class MyOrder extends Component {
                     commentData: []
                 },
             ],
-            editAcitve: false,
+            editActive: false,
             shadowActive: false
         }
 
-        this.changeEditAcitve = this.changeEditAcitve.bind(this)
+        this.changeEditActive = this.changeEditActive.bind(this)
     }
 
 
@@ -94,8 +94,8 @@ export default class MyOrder extends Component {
     }
 
     // 点击编辑按钮的方法
-    changeEditAcitve() {
-        this.setState({editAcitve: !this.state.editAcitve})
+    changeEditActive() {
+        this.setState({editActive: !this.state.editActive})
     }
 
     // 必须声明这玩意 子组件才能拿到store
@@ -108,7 +108,7 @@ export default class MyOrder extends Component {
         let arr = [];
         data.map((msg, i) => {
             arr.push(
-                <CommentCell key={i} index={i} data={msg} editAcitve={this.state.editAcitve}/>
+                <CommentCell key={i} index={i} data={msg} editActive={this.state.editActive}/>
             )
         })
 
@@ -120,7 +120,7 @@ export default class MyOrder extends Component {
         return (
             <View style={styles.container}>
                 <Title navigator={this.props.navigator} data={this.state.titleData}
-                       changeEditAcitve={this.changeEditAcitve}/>
+                       changeEditActive={this.changeEditActive}/>
                 <ScrollView
                     style={{paddingLeft: 10, paddingRight: 10}}
                 >

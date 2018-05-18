@@ -1,5 +1,5 @@
 /**
- * Created by Administrator on 2017/4/23.
+ * Created by zw9love on 2017/4/23.
  */
 import React from 'react';
 import {
@@ -61,7 +61,7 @@ export default React.createClass({
                     //showHideTransition={'fade'}
                     //networkActivityIndicatorVisible={true}
                 />
-                <Image source={require('../assets/images/mimi.jpg')} style={styles.image}/>
+                <Image source={require('../assets/images/reba.jpg')} style={styles.image}/>
                 <View style={styles.txtWrap}>
                     <TouchableOpacity onPress={this.jump}>
                         <Text style={styles.adver}>跳过广告</Text>

@@ -1,5 +1,5 @@
 /**
- * Created by Administrator on 2017/4/29.
+ * Created by zw9love on 2017/4/29.
  */
 import React, {Component} from 'react';
 import {
@@ -11,8 +11,10 @@ import {
     Dimensions,
     Animated,
     Easing,
-    StatusBar
+    StatusBar,
+    Platform
 } from 'react-native';
+import {getNeedMargin} from '../assets/util/index'
 
 let {width, height, scale} = Dimensions.get('window');
 
@@ -38,8 +40,13 @@ export default class MyOrder extends Component {
         if (!this.props.delete) return
         let index = this.context.store.getState().indexReducer
         let obj = this.context.store.getState().mySetThisReducer
+        // console.log(obj)
+        console.log(index)
         // let arr = obj.state.mainData
+        let list = []
         obj.state.mainData.splice(index, 1)
+        list = list.concat(obj.state.mainData)
+        obj.setState({mainData: list})
     }
 
     // 点击取消按钮方法
@@ -117,7 +124,7 @@ const styles = StyleSheet.create({
         height: height,
         position: 'absolute',
         left: 0,
-        top: 0,
+        top: -getNeedMargin(),
         zIndex: 100,
         backgroundColor: 'rgba(0,0,0,.3)',
         justifyContent: 'center',

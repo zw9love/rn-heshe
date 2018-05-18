@@ -1,5 +1,5 @@
 /**
- * Created by Administrator on 2017/4/28.
+ * Created by zw9love on 2017/4/28.
  */
 import React, {Component} from 'react';
 import {
@@ -10,7 +10,9 @@ import {
     TouchableOpacity,
     Image,
     Dimensions,
-    StatusBar, Platform
+    StatusBar,
+    Platform,
+    FlatList
 } from 'react-native';
 
 import {connect} from 'react-redux'
@@ -19,6 +21,7 @@ import Title from '../components/Title'
 import RecommendCell from '../components/RecommendCell'
 import Modal from '../components/Modal'
 import style from '../assets/style/common'
+import Mock from "mockjs";
 
 class MyLike extends Component {
     constructor(props) {
@@ -28,79 +31,35 @@ class MyLike extends Component {
                 title: '我的收藏',
                 edit: true
             },
-            mainData: [
-                {
-                    orderName: '时尚芭莎',
-                    title: '卡通人物客串super modal 这样很disney',
-                    eyes: '267',
-                    msgs: '78',
-                    url: require('../assets/images/demo1.jpg')
-                },
-                {
-                    orderName: '男人装',
-                    title: '除了小白裙，你还可以这样穿这些白色过夏天',
-                    eyes: '342',
-                    msgs: '261',
-                    url: require('../assets/images/demo2.jpg')
-                },
-                {
-                    orderName: '男人装',
-                    title: '这双珍珠鞋到底有多美？连蕾哈娜穿上都不肯脱下来1',
-                    eyes: '666',
-                    msgs: '888',
-                    url: require('../assets/images/demo3.jpg')
-                },
-                {
-                    orderName: '男人装',
-                    title: '这双珍珠鞋到底有多美？连蕾哈娜穿上都不肯脱下来2',
-                    eyes: '777',
-                    msgs: '999',
-                    url: require('../assets/images/demo4.jpg')
-                },
-                {
-                    orderName: '男人装',
-                    title: '这双珍珠鞋到底有多美？连蕾哈娜穿上都不肯脱下来3',
-                    eyes: '888',
-                    msgs: '111',
-                    url: require('../assets/images/demo5.jpg')
-                },
-                {
-                    orderName: '男人装',
-                    title: '这双珍珠鞋到底有多美？连蕾哈娜穿上都不肯脱下来4',
-                    eyes: '999',
-                    msgs: '378',
-                    url: require('../assets/images/demo1.jpg')
-                },
-                {
-                    orderName: '男人装',
-                    title: '这双珍珠鞋到底有多美？连蕾哈娜穿上都不肯脱下来5',
-                    eyes: '123',
-                    msgs: '456',
-                    url: require('../assets/images/demo2.jpg')
-                },
-                {
-                    orderName: '男人装',
-                    title: '这双珍珠鞋到底有多美？连蕾哈娜穿上都不肯脱下来5',
-                    eyes: '456',
-                    msgs: '456',
-                    url: require('../assets/images/demo3.jpg')
-                },
-            ],
-            editAcitve: false,
-            shadowActive: false
+            mainData: [],
+            editActive: false,
+            shadowActive: false,
+            refreshLock: false
         }
 
-        this.changeEditAcitve = this.changeEditAcitve.bind(this)
+        this.changeEditActive = this.changeEditActive.bind(this)
+        this.renderMainDataItem = this.renderMainDataItem.bind(this)
+        this.mainScrollEndReached = this.mainScrollEndReached.bind(this)
     }
 
     render() {
         return (
             <View style={styles.container}>
                 <Title navigator={this.props.navigator} data={this.state.titleData}
-                       changeEditAcitve={this.changeEditAcitve}/>
-                <ScrollView style={styles.verticalScroll}>
-                    {this.renderRecommendCell()}
-                </ScrollView>
+                       changeEditActive={this.changeEditActive}/>
+                {/*<ScrollView style={styles.verticalScroll}>*/}
+                    {/*{this.renderRecommendCell()}*/}
+                {/*</ScrollView>*/}
+                <FlatList
+                    style={styles.verticalScroll}
+                    data={this.state.mainData}
+                    extraData={this.state.mainData}
+                    keyExtractor={this.renderMainDataKey}
+                    renderItem={this.renderMainDataItem}
+                    onEndReachedThreshold={0.95}
+                    onEndReached={this.mainScrollEndReached}
+                    refreshing={true}
+                />
                 {
                     this.state.shadowActive ? <Modal obj={this} info="删除这条收藏" delete={true}/> : null
                 }
@@ -112,11 +71,55 @@ class MyLike extends Component {
     componentDidMount() {
         const {setMyState} = this.props;
         setMyState(this);
+        this.setState({mainData: this.getMockData()})
     }
 
     // 点击编辑按钮的方法
-    changeEditAcitve() {
-        this.setState({editAcitve: !this.state.editAcitve})
+    changeEditActive() {
+        let list = []
+        // this.state.mainData.forEach(o => {o.editActive = !o.editActive})
+        list = list.concat(this.state.mainData);
+        this.setState({mainData: list, editActive: !this.state.editActive})
+    }
+
+    getMockData() {
+        let data = Mock.mock({
+            // 属性 list 的值是一个数组，其中含有 1 到 10 个元素
+            'list|8': [{
+                // 属性 id 是一个自增数，起始值为 1，每次增 1
+                id: '@id',
+                orderName: '@cname',
+                title: '@title(3, 5)',
+                eyes: '@integer(0,10000)',
+                msgs: '@integer(0,10000)',
+                url: require('../assets/images/demo1.jpg')
+                // editActive: false
+                // url: "@pick(['../assets/images/demo1.jpg'" +
+                // ", '../assets/images/demo2.jpg'" +
+                // ", '../assets/images/demo3.jpg'" +
+                // ", '../assets/images/demo4.jpg'" +
+                // ", '../assets/images/demo5.jpg'])"
+            }]
+        }).list
+        // console.log(data)
+        return data
+    }
+
+    renderMainDataKey(item, index) {
+        return item.id
+    }
+
+    renderMainDataItem({item, index}) {
+        let specialStyle = index === 0 ? {paddingTop: 0} : {}
+        return (<RecommendCell key={index} index={index} data={item} specialStyle={specialStyle} editActive={this.state.editActive}/>)
+    }
+
+    mainScrollEndReached() {
+        if (!this.refreshLock) {
+            this.refreshLock = true
+            this.setState({mainData: this.state.mainData.concat(this.getMockData())})
+            this.refreshLock = false
+        }
     }
 
     // 渲染RecommendCell块
@@ -124,10 +127,10 @@ class MyLike extends Component {
         let data = this.state.mainData
         let arr = [];
         data.map((msg, i) => {
-            let specialStyle = i == 0 ? {paddingTop: 0} : {}
+            let specialStyle = i === 0 ? {paddingTop: 0} : {}
             arr.push(
                 <RecommendCell key={i} index={i} data={msg} specialStyle={specialStyle}
-                               editAcitve={this.state.editAcitve}/>
+                               editActive={this.state.editActive}/>
             )
         })
 
