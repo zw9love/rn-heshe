@@ -7,6 +7,7 @@
     "test": "jest",
     "dev-ios": "react-native run-ios --simulator 'iPhone 8'",
     "dev-android": "react-native run-android",
+    "build-ios": "react-native bundle --entry-file ./index.ios.js --bundle-output ./ios/bundle/index.ios.jsbundle --platform ios --assets-dest ./ios/bundle --dev false"
     "build-android": "cd android && ./gradlew assembleRelease"
   },
   "dependencies": {
