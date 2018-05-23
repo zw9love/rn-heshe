@@ -400,7 +400,6 @@ export default class Home extends Component {
         switch (this.state.firstIndex) {
             case 0:
                 return <Search title="搜索" component={RecommendSearch}/>
-                break;
             case 1:
                 return (
                     <ScrollView
@@ -411,13 +410,10 @@ export default class Home extends Component {
                         {this.renderSecondNav()}
                     </ScrollView>
                 )
-                break;
             case 2:
                 return <Search title="搜索订阅号" component={OrderSearch}/>
-                break;
             default:
                 return <Search title="搜索" component={RecommendSearch}/>
-                break;
         }
     }
 
