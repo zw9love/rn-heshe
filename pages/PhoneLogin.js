@@ -193,12 +193,13 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: '#ccc',
         paddingLeft: 10,
-        paddingRight: 10
+        paddingRight: 10,
     },
     txt: {
         height: 72,
         fontSize: 12,
-        width: '100%'
+        width: '100%',
+        paddingVertical: 0
     },
     centerWrap: {
         flexDirection: 'row',

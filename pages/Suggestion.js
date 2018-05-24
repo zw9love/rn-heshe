@@ -128,7 +128,8 @@ const styles = StyleSheet.create({
         padding: 10,
         paddingTop: 5,
         paddingBottom: 5,
-        fontSize: 12
+        fontSize: 12,
+        paddingVertical: 0
     },
     concatWrap: {
         height: 30,
@@ -144,7 +145,8 @@ const styles = StyleSheet.create({
     txt2: {
         fontSize: 12,
         height: 60,
-        width: '100%'
+        width: '100%',
+        paddingVertical: 0
         // backgroundColor:'green'
     },
     btnWrap: {
