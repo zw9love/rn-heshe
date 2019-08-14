@@ -108,7 +108,7 @@ export default class Home extends Component {
         if (Platform.OS === 'android') {
             BackAndroid.addEventListener('hardwareBackPress', this.onBackAndroid);
         }
-
+        console.log(this.props)
         // 设置navigator放在store里
         let action = {type: 'setNavigator', value: this.props.navigator}
         this.context.store.dispatch(action)

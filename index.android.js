@@ -43,7 +43,7 @@ export default class heshe extends Component {
                   }}
                   renderScene={(route, navigator) =>{
                                     let Component =  route.component;
-                                    return <Component {...route.passProps} navigator={navigator}/>
+                                    return <Component {...route.passProps} navigator={navigator} name="rn-heshe-app"/>
                                 }}
                   //configureScene={
                   //                  (route, routeStack) => Navigator.SceneConfigs.FloatFromBottom
