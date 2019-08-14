@@ -125,9 +125,11 @@ export default class Home extends Component {
         //     })
         // .done();
 
-        // fetchData('/count/get', null, res => {
-        //     console.log(res)
-        // })
+        fetchData('/user/pagination', 'GET', {pageSize: 6, pageNumber: 1}).then(res => {
+            console.log(res)
+        }).catch(err => {
+            console.log(err)
+        })
     }
 
     // 必须声明这玩意 子组件才能拿到storemainScrollEndReached

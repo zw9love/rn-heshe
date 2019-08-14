@@ -23,6 +23,11 @@ export default class MyOrder extends Component {
         }
     }
 
+    // 必须声明这玩意 子组件才能拿到store
+    static contextTypes = {
+        store: React.PropTypes.object.isRequired    // 子组件的  contextTypes 必须声明 这句很重要
+    }
+
     render() {
         return (
             <View>
@@ -66,7 +71,9 @@ export default class MyOrder extends Component {
     }
 
     back() {
-        this.props.navigator.pop();
+        let nav = this.context.store.getState().myNavigator;
+        nav.pop();
+        // this.props.navigator.pop();
     }
 
     edit() {

@@ -13,6 +13,7 @@
   "dependencies": {
     "fetch-intercept": "^2.2.3",
     "mockjs": "^1.0.1-beta3",
+    "qs": "^6.7.0",
     "react": "16.0.0-alpha.6",
     "react-native": "0.43.3",
     "react-native-iphone-x-helper": "^1.0.2",
